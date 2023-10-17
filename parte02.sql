@@ -1,4 +1,3 @@
-
 CREATE OR REPLACE FUNCTION ingreso_extra(codhotel integer, OUT tipohab smallint, OUT monto numeric(8, 2))
 RETURNS SETOF record AS $$
 BEGIN
@@ -12,7 +11,6 @@ BEGIN
                     0
             END
         ) AS monto
-		--SUM(ch.precio_noche * (e.check_out - e.check_in)) AS monto
 	FROM hoteles a
 	INNER JOIN habitaciones h 
 		ON h.hotel_codigo = a.hotel_codigo AND h.hotel_codigo = codhotel
@@ -40,14 +38,3 @@ BEGIN
     RETURN;
 END;
 $$ LANGUAGE plpgsql;
-
---SELECT * FROM ingreso_extra(2605099)
---SELECT * FROM ingreso_extra(6461800)
---SELECT * FROM ingreso_extra(6464350)
-
---select * from hoteles
---select * from tipos_habitacion  
---select * from costos_habitacion
---select * from habitaciones where hotel_codigo = 2605099
---select * from estadias_anteriores
---select * from reservas_anteriores
